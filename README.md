@@ -3,7 +3,7 @@
   
 ## 资料
 [BootStrap 开发手册](https://getbootstrap.com/docs/4.3/getting-started/introduction/)  
-[Github API](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)  
+[Github OAuth API](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)  
 [Elasticsearch 中文社区](https://elasticsearch.cn/)
 
 ## 工具
