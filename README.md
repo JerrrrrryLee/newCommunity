@@ -9,6 +9,19 @@
 ## 工具
 Spring Boot IDEA Git BootStrap
 
+## 脚本
+```sql
+create table USER
+(
+	ID INTEGER default NEXT VALUE primary key,
+	ACCOUNT_ID VARCHAR(100),
+	NAME VARCHAR(50),
+	TOKEN CHAR(36),
+	GMT_CREATE BIGINT,
+	GMT_MODIFY BIGINT
+);
+```
+
 
 
 
