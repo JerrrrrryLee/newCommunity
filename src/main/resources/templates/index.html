@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,12 +22,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" th:if="${session.user} eq null">
                     <a class="nav-link"
                        href="https://github.com/login/oauth/authorize?client_id=5a7128c8732224d83391&redirect_uri=http://localhost:8887/callback&scope=user&state=1">Login</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown" th:if="${session.user} ne null">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       th:text="${session.user.getName()}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Me
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
