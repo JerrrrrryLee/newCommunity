@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>发起-乌鸦社区</title>
+
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/static/css/community.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--&lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
+    <!--<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
+
+</head>
+<body>
+
+    <div th:replace="~{navigation::topnavigation}"></div>
+    <div class="main">
+        <div class="container-fluid main">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" >
+                    <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+                    <hr>
+                    <form action="/publish" method="post">
+                        <div class="form-group">
+                            <label for="title">问题标题（简单扼要）：</label>
+                            <input th:value="${title}" type="text" class="form-control" id="title" name="title" placeholder="问题标题...">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">问题描述</label>
+                            <textarea th:text="${description}" class="form-control" id="description" name="description" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="tag">添加标签（以 ，分隔）：</label>
+                            <input th:text="${tag}" type="text" class="form-control" id="tag" name="tag" placeholder="标签...">
+                        </div>
+                        <span th:if="${error} ne null" class="alert alert-danger" th:text="${error}"></span>
+                        <button type="submit" class="btn btn-success btn-publish">发布</button>
+                    </form>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3" >
+                    <h3>问题发起指南</h3>
+                    -问题标题：<br>
+                    -问题补充：<br>
+                    -选择标签：<br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+</html>

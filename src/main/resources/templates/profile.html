@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>乌鸦社区</title>
+    <title th:text="${sectionName}">个人中心</title>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/static/css/community.css">
+
+
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,18 +22,16 @@
         <div class="container-fluid main">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9" >
-                    <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+                    <h2></span><span th:text="${sectionName}"></span></h2>
                     <hr>
+
                     <ul class="list-unstyled">
                         <li class="media" th:each="question:${pagination.questions}">
-                            <img th:src="${question.getUser().getAvatarUrl()}" class="mr-3 rounded-circle" style="width: 70px;height: 70px">
+                            <img th:src="${question.getUser().getAvatarUrl()}" class="mr-3 pic-index rounded-circle" style="width: 70px;height: 70px">
                             <div class="media-body">
-                                <h5 class="mt-0 mb-1">
-                                    <a th:href="@{'/question/'+${question.id}}" th:text="${question.title}"></a>
-                                </h5>
+                                <h5 class="mt-0 mb-1" th:text="${question.title}"></h5>
                                 <div class="text-index">
-                                    <span th:text="${question.description}"></span>
-                                    JR发起了问题 • <span th:text="${question.getLikeCount()}"></span> 人点赞 •
+                                    <span th:text="${question.getLikeCount()}"></span> 人点赞 •
                                     <span th:text="${question.getCommentCount()}"></span> 个评论 • <span th:text="${question.getViewCount()}"></span> 次浏览 •
                                     <span th:text="${#dates.format(question.getGmtCreate(), 'yyyy-MM-dd HH:mm')}"></span>
                                 </div>
@@ -42,39 +42,48 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item" th:if="${pagination.showFirstPage}">
-                                <a class="page-link" th:href="@{/(page=1)}" aria-label="Previous">
+                                <a class="page-link" th:href="@{'/profile/'+${section}(page=1)}" aria-label="Previous">
                                     <span aria-hidden="true">&lt;&lt;</span>
                                 </a>
                             </li>
                             <li class="page-item" th:if="${pagination.showPrevious}">
-                                <a class="page-link" th:href="@{/(page=${pagination.page}-1)}" aria-label="Previous">
+                                <a class="page-link" th:href="@{'/profile/'+${section}(page=${pagination.page}-1)}" aria-label="Previous">
                                     <span aria-hidden="true">&lt;</span>
                                 </a>
                             </li>
 
                             <li class="page-item" th:classappend="${pagination.page==page}?'active' : ''"  th:each="page:${pagination.getPages()}">
-                                <a class="page-link" th:href="@{/(page=${page})}">[[${page}]]</a>
+                                <a class="page-link" th:href="@{'/profile/'+${section}(page=${page})}">[[${page}]]</a>
                             </li>
 
                             <li class="page-item" th:if="${pagination.showNext}">
-                                <a class="page-link" th:href="@{/(page=${pagination.page}+1)}" aria-label="Previous">
+                                <a class="page-link" th:href="@{'/profile/'+${section}(page=${pagination.page}+1)}" aria-label="Previous">
                                     <span aria-hidden="true">&gt;</span>
                                 </a>
                             </li>
 
                             <li class="page-item" th:if="${pagination.showLastPage}">
-                                <a class="page-link" th:href="@{/(page=${pagination.pagesNumber})}" aria-label="Next">
+                                <a class="page-link" th:href="@{'/profile/'+${section}(page=${pagination.pagesNumber})}" aria-label="Next">
                                     <span aria-hidden="true">&gt;&gt;</span>
                                 </a>
                             </li>
                         </ul>
                     </nav>
+
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3" >
-                    <h3>热门话题</h3>
+                    <div class="list-group" style="margin-top:50px">
+                        <a href="/profile/question" class="list-group-item list-group-item-action" th:classappend="${section=='question'}?'active':''">
+                            <span>我的问题</span>
+                        </a>
+                        <a href="/profile/reply" class="list-group-item list-group-item-action" th:classappend="${section=='reply'}?'active':''">
+                            <span><span>最新回复</span><span class="badge badge-pill badge-warning float-right" >8</span></span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
 

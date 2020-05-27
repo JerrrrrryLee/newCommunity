@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="topnavigation">
+    <a class="navbar-brand" href="/">乌鸦社区</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:if="${session.user} ne null">
+                <a class="nav-link" href="/publish">发布</a>
+            </li>
+            <li class="nav-item" th:if="${session.user} eq null">
+                <a class="nav-link"
+                   href="https://github.com/login/oauth/authorize?client_id=5a7128c8732224d83391&redirect_uri=http://localhost:8887/callback&scope=user&state=1">Login</a>
+            </li>
+            <li class="nav-item dropdown" th:if="${session.user} ne null">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   th:text="${session.user.getName()}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Me
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/profile/question">我的问题</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">退出登录</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+</body>
+</html>

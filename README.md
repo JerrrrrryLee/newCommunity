@@ -5,21 +5,14 @@
 [BootStrap 开发手册](https://getbootstrap.com/docs/4.3/getting-started/introduction/)  
 [Github OAuth API](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)  
 [Elasticsearch 中文社区](https://elasticsearch.cn/)
+[Flyway](https://flywaydb.org/getstarted/firststeps/maven)
 
 ## 工具
-Spring Boot IDEA Git BootStrap
+Spring Boot IDEA Git BootStrap Flyway
 
 ## 脚本
-```sql
-create table USER
-(
-	ID INTEGER default NEXT VALUE primary key,
-	ACCOUNT_ID VARCHAR(100),
-	NAME VARCHAR(50),
-	TOKEN CHAR(36),
-	GMT_CREATE BIGINT,
-	GMT_MODIFY BIGINT
-);
+```bash
+mvn flyway:migrate
 ```
 
 
